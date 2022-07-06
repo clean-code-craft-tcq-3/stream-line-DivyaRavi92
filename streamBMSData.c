@@ -4,7 +4,7 @@
 void printOnConsole(float temp, float soc)
 {
     printf("Temperature = %0.2f, ", temp);
-    printf("SOC = %d \%", soc \n);
+    printf("SOC = %d \% \n", soc);
 
 }
 
@@ -20,7 +20,7 @@ bool checkTempinRange(batteryType_t batteryType, float temp)
         isTempInRange = checkThresholdLimit(-20, 65, temp);
         break;
         default:
-        isTempInRange = FALSE;
+        isTempInRange = false;
         break;
     }
     return isTempInRange;
@@ -30,26 +30,26 @@ bool checkThresholdLimit(float minVal, float maxVal, float temp)
 {
     if(temp >= minVal  && temp <= maxVal)
     {
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 bool checkSOCinRange(int soc)
 {
     if(soc >= 40  && soc <= 90)
     {
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
 {
-    bool isValInRange = FALSE;
+    bool isValInRange = false;
     if(isTempValueInRange && isSOCValinRange)
     {
-        isValInRange = TRUE;
+        isValInRange = true;
     }
     return isValInRange;    
 }
