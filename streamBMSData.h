@@ -5,7 +5,7 @@ typedef enum
     NICKEL
 }batteryType_t;
 
-void printOnConsole(float temp, float soc);
+void printOnConsole(float temp, int soc);
 bool checkTempinRange(batteryType_t batteryType, float temp);
 bool checkThresholdLimit(float minVal, float maxVal, float temp);
 bool checkSOCinRange(int soc);
