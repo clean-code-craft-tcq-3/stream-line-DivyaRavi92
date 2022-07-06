@@ -57,10 +57,11 @@ bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
 }
 
 
-void processBMSStreamData(char batType, float tempArray[], int SOCArray[], int Range)
+int processBMSStreamData(char batType, float tempArray[], int SOCArray[], int Range)
 {
     int data;
     bool isTempValueInRange, isSOCValinRange, isValInRange;
+    int noOfValidValues;
     for(data = 0; data < Range ; data++)
     {
         isTempValueInRange = checkTempinRange(batType, tempArray[data]);
@@ -69,6 +70,8 @@ void processBMSStreamData(char batType, float tempArray[], int SOCArray[], int R
         if(isValInRange)
         {
             printOnConsole(tempArray[data], SOCArray[data]);
+            noOfValidValues++;
         }
     }
+    return noOfValidValues;
 }
