@@ -1,9 +1,10 @@
 #include "streamBMSData.h"
+#include "stdbool.h"
 
 void printOnConsole(float temp, float soc)
 {
     printf("Temperature = %0.2f, ", temp);
-    printf("SOC = %d %", soc \n);
+    printf("SOC = %d \%", soc \n);
 
 }
 
@@ -54,7 +55,7 @@ bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
 }
 
 
-int processBMSStreamData(char batType, float tempArray[], int SOCArray[], int Range)
+int processBMSStreamData(const char *batType, float tempArray[], int SOCArray[], int Range)
 {
     int data;
     bool isTempValueInRange, isSOCValinRange, isValInRange;
@@ -72,3 +73,4 @@ int processBMSStreamData(char batType, float tempArray[], int SOCArray[], int Ra
     }
     return noOfValidValues;
 }
+
