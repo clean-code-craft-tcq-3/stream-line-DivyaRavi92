@@ -14,4 +14,4 @@ void printOnConsole(int temp, int soc);
 bool checkTempinRange(batteryType_t batteryType, float temp);
 bool checkSOCinRange(int soc);
 bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange);
-bool randomValuesRangeCheck(int noOfValidValues)
+bool randomValuesRangeCheck(int noOfValidValues);
