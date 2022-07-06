@@ -4,19 +4,19 @@
 void printOnConsole(float temp, float soc)
 {
     printf("Temperature = %0.2f, ", temp);
-    printf("SOC = %d \%\n", soc);
+    printf("SOC = %d \%", soc \n);
 
 }
 
-bool checkTempinRange(char batteryType, float temp)
+bool checkTempinRange(batteryType_t batteryType, float temp)
 {
     bool isTempInRange;
     switch(batteryType)
     {
-        case "Lead": 
+        case LEAD: 
         isTempInRange = checkThresholdLimit(-20, 50, temp);
         break;
-        case "Nickel":
+        case NICKEL:
         isTempInRange = checkThresholdLimit(-20, 65, temp);
         break;
         default:
@@ -55,7 +55,7 @@ bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
 }
 
 
-int processBMSStreamData(const char *batType, float tempArray[], int SOCArray[], int Range)
+int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[], int Range)
 {
     int data;
     bool isTempValueInRange, isSOCValinRange, isValInRange;
