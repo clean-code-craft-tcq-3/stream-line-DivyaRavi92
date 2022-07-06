@@ -71,6 +71,7 @@ int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[
             noOfValidValues++;
         }
     }
+    printf("Valid values = %d\n", noOfValidValues);
     return noOfValidValues;
 }
 
