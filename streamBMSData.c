@@ -18,9 +18,6 @@ bool checkTempinRange(char batteryType, float temp)
         case "Nickel":
         isTempInRange = checkThresholdLimit(-20, 65, temp);
         break;
-        case "Lithium": 
-        isTempInRange = checkThresholdLimit(-20, 60, temp);
-        break;
         default:
         isTempInRange = FALSE;
         break;
