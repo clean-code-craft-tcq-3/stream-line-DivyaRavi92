@@ -1,7 +1,7 @@
 #include <stdio.h>
 typedef enum
 {
-    LEAD = 0u;
+    LEAD = 0,
     NICKEL
 }batteryType_t;
 
