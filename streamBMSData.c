@@ -1,5 +1,6 @@
 #include "streamBMSData.h"
 #include "stdbool.h"
+#include "stdlib.h"
 
 void printOnConsole(int temp, int soc)
 {
