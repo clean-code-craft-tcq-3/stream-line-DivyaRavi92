@@ -1,7 +1,7 @@
 #include "streamBMSData.h"
 #include "stdbool.h"
 
-void printOnConsole(float temp, float soc)
+void printOnConsole(float temp, int soc)
 {
     printf("Temperature = %0.2f, ", temp);
     printf("SOC = %d \% \n", soc);
