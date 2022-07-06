@@ -4,7 +4,7 @@
 void printOnConsole(float temp, float soc)
 {
     printf("Temperature = %0.2f, ", temp);
-    printf("SOC = %d \%", soc \n);
+    printf("SOC = %d \%\n", soc);
 
 }
 
