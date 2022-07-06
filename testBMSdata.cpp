@@ -16,6 +16,6 @@ TEST_CASE("TestCase2 : Stream InValid Data From Sensor and check if the invalid 
 
     char batteryType = "Nickel";
     float tempSensorDataInvalid[] = {50.2, 20.5, -40.0, 9.62};
-    float socSensorDataInvalid[] = {20, 65, 45, 10};
+    int socSensorDataInvalid[] = {20, 65, 45, 10};
     REQUIRE(processBMSStreamData(batteryType, tempSensorDataInvalid, socSensorDataInvalid)==1);
 }
