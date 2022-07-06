@@ -59,7 +59,7 @@ int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[
 {
     int data;
     bool isTempValueInRange, isSOCValinRange, isValInRange;
-    int noOfValidValues;
+    int noOfValidValues = 0;
     for(data = 0; data < Range ; data++)
     {
         isTempValueInRange = checkTempinRange(batType, tempArray[data]);
@@ -68,7 +68,7 @@ int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[
         if(isValInRange)
         {
             printOnConsole(tempArray[data], SOCArray[data]);
-            noOfValidValues++;
+            noOfValidValues += 1;
         }
     }
     printf("Valid values = %d\n", noOfValidValues);
