@@ -1,14 +1,14 @@
 #include "streamBMSData.h"
 #include "stdbool.h"
 
-void printOnConsole(float temp, int soc)
+void printOnConsole(int temp, int soc)
 {
-    printf("Temperature = %0.2f, ", temp);
-    printf("SOC = %d \% \n", soc);
+    printf("Temperature = %d, ", temp);
+    printf("SOC = %d \n", soc);
 
 }
 
-bool checkTempinRange(batteryType_t batteryType, float temp)
+bool checkTempinRange(batteryType_t batteryType, int temp)
 {
     bool isTempInRange;
     switch(batteryType)
@@ -26,7 +26,7 @@ bool checkTempinRange(batteryType_t batteryType, float temp)
     return isTempInRange;
 }
 
-bool checkThresholdLimit(float minVal, float maxVal, float temp)
+bool checkThresholdLimit(int minVal, int maxVal, int temp)
 {
     if(temp >= minVal  && temp <= maxVal)
     {
@@ -54,12 +54,29 @@ bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
     return isValInRange;    
 }
 
+void generateRandomNumbers(int tempMin, int tempMax, int * Array, int Range )
+{
+    for(int i =0; i < Range; i++)
+    {
+        Array[i] = (rand() % (tempMax - tempMin+1) + tempMin);
+    }
+}
 
-int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[], int Range)
+bool processBMSStreamData(batteryType_t batType, int Range, int * tempRange, int *socRange)
 {
     int data;
+    int tempMin = tempRange[0];
+    int tempMax = tempRange[1];
+    int socMin = socRange[0];
+    int socMax = socRange[1];
+    int tempArray[Range], SOCArray[Range];
+    bool checkValidityOfRange;
+    
+    generateRandomNumbers(tempMin, tempMax, tempArray, Range);
+    generateRandomNumbers(socMin, socMax, SOCArray, Range);
+
     bool isTempValueInRange, isSOCValinRange, isValInRange;
-    int noOfValidValues = 0;
+    int noOfValidValues;
     for(data = 0; data < Range ; data++)
     {
         isTempValueInRange = checkTempinRange(batType, tempArray[data]);
@@ -68,10 +85,23 @@ int processBMSStreamData(batteryType_t batType, float tempArray[], int SOCArray[
         if(isValInRange)
         {
             printOnConsole(tempArray[data], SOCArray[data]);
-            noOfValidValues += 1;
+            noOfValidValues++;
         }
     }
-    printf("Valid values = %d\n", noOfValidValues);
-    return noOfValidValues;
+
+    checkValidityOfRange = randomValuesRangeCheck(noOfValidValues);
+    return checkValidityOfRange;
+}
+
+bool randomValuesRangeCheck(int noOfValidValues)
+{
+    if(noOfValidValues >= 50)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
