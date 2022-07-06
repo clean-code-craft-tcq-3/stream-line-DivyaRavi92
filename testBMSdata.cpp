@@ -19,6 +19,6 @@ TEST_CASE("TestCase2 : Stream Number of Valid Data From Sensor is below 50") {
     batteryType_t BMSType = NICKEL;
     int temp[2] = {-30, 50};
     int soc[2] = {10, 100};
-    int Range = 50;
+    int Range = 10;
     REQUIRE(processBMSStreamData(BMSType, Range, temp, soc) == false);
 }
