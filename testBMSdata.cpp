@@ -4,20 +4,20 @@
 #include "streamBMSData.h"
 
 
-TEST_CASE("TestCase1 : Stream Valid Data From Sensor") {
+TEST_CASE("TestCase1 : Stream Number of Valid Data From Sensor is above 50") {
 
     batteryType_t BMSType = LEAD;
-    float tempArray[] = {-12.0, 20.0, 40.0, 30.0};
-    int socArray[] = {60, 50, 45, 80};
-    int Range = 4;
-    REQUIRE(processBMSStreamData(BMSType, tempArray, socArray, Range) == 4);
+    int temp[2] = {-20, 50};
+    int soc[2] = {10, 70};
+    int Range = 50;
+    REQUIRE(processBMSStreamData(BMSType, Range, temp, soc) == TRUE);
 }
 
-TEST_CASE("TestCase2 : Stream InValid Data From Sensor and check if the invalid values are ignored") {
+TEST_CASE("TestCase2 : Stream Number of Valid Data From Sensor is below 50") {
 
     batteryType_t BMSType = NICKEL;
-    float tempSensorDataInvalid[] = {50.2, 20.5, -40.0, 9.62};
-    int socSensorDataInvalid[] = {20, 65, 45, 10};
-    int Range = 4;
-    REQUIRE(processBMSStreamData(BMSType, tempSensorDataInvalid, socSensorDataInvalid, Range) == 1);
+    int temp[2] = {-30, 50};
+    int soc[2] = {10, 100};
+    int Range = 50;
+    REQUIRE(processBMSStreamData(BMSType, Range, temp, soc) == FALSE);
 }
