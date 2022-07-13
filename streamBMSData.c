@@ -15,6 +15,8 @@ void printOnConsole(int temp[], int soc[])
     {
         printf("%d ,", soc[data]);
     }
+    
+    printf("\n");
 }
 bool checkThresholdLimit(int minVal, int maxVal, int temp)
 {
