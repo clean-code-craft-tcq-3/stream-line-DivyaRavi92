@@ -95,22 +95,28 @@ bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
         isValInRange = checkValueInRange(isTempValueInRange, isSOCValinRange);
         if(isValInRange)
         {
-            if(noOfValidValues < 50)
-            {
-                tempValidArray[noOfValidValues] =tempArray[data];
-                socValidArray[noOfValidValues] = SOCArray[data];
-                noOfValidValues++;
-            }
-            else if (noOfValidValues == 50)
-            {
-                printOnConsole(tempValidArray, socValidArray);
-                noOfValidValues = 0;
-            }
-            
-            totalValidValues++;
-        }
+            checkAndAssigntoArray(tempValidArray, socValidArray, tempArray[data], SOCArray[data], noOfValidValues);
+        }    
+        
+        totalValidValues++;
     }
 
     checkValidityOfRange = randomValuesRangeCheck(totalValidValues);
     return checkValidityOfRange;
+}
+
+void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int tempArray[data], int SOCArray[data], int * noOfValidValues);
+{
+    if(noOfValidValues < 50)
+    {
+        tempValidArray[noOfValidValues] =tempArray[data];
+        socValidArray[noOfValidValues] = SOCArray[data];
+        *noOfValidValues++;
+    }
+    else
+    {
+        printOnConsole(tempValidArray, socValidArray);
+        *noOfValidValues = 0;   
+    }
+    
 }
