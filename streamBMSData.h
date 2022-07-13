@@ -8,4 +8,4 @@ bool checkTempinRange(int temp);
 bool checkSOCinRange(int soc);
 bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange);
 bool randomValuesRangeCheck(int noOfValidValues);
-void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int * noOfValidValues);
+void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int noOfValidValues);
