@@ -1,32 +1,21 @@
 #include "streamBMSData.h"
-#include "stdbool.h"
+include "stdbool.h"
 #include "stdlib.h"
 
-void printOnConsole(int temp, int soc)
+void printOnConsole(int temp[], int soc[])
 {
-    printf("Temperature = %d, ", temp);
-    printf("SOC = %d \n", soc);
-
-}
-
-bool checkTempinRange(batteryType_t batteryType, int temp)
-{
-    bool isTempInRange;
-    switch(batteryType)
+    int data = 0;
+    printf("\nTemperature Array\n");
+    for(data =0;data < 50; data ++)
     {
-        case LEAD: 
-        isTempInRange = checkThresholdLimit(-20, 50, temp);
-        break;
-        case NICKEL:
-        isTempInRange = checkThresholdLimit(-20, 65, temp);
-        break;
-        default:
-        isTempInRange = false;
-        break;
+        printf("%d ", temp[data]);
     }
-    return isTempInRange;
+    printf("\nSOC Array\n");
+    for(data =0; data < 50; data ++)
+    {
+        printf("%d ", soc[data]);
+    }
 }
-
 bool checkThresholdLimit(int minVal, int maxVal, int temp)
 {
     if(temp >= minVal  && temp <= maxVal)
@@ -36,6 +25,14 @@ bool checkThresholdLimit(int minVal, int maxVal, int temp)
     return false;
 }
 
+bool checkTempinRange(int temp)
+{
+    bool isTempInRange;
+    isTempInRange = checkThresholdLimit(-20, 50, temp);
+    return isTempInRange;
+}
+
+
 bool checkSOCinRange(int soc)
 {
     if(soc >= 40  && soc <= 90)
@@ -44,6 +41,19 @@ bool checkSOCinRange(int soc)
     }
     return false;
 }
+
+bool randomValuesRangeCheck(int noOfValidValues)
+{
+    if(noOfValidValues >= 50)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
 bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
 {
@@ -63,46 +73,44 @@ void generateRandomNumbers(int tempMin, int tempMax, int * Array, int Range )
     }
 }
 
-bool processBMSStreamData(batteryType_t batType, int Range, int * tempRange, int *socRange)
+bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
 {
     int data;
     int tempMin = tempRange[0];
     int tempMax = tempRange[1];
     int socMin = socRange[0];
     int socMax = socRange[1];
-    int tempArray[Range], SOCArray[Range];
+    int tempArray[Range], SOCArray[Range], tempValidArray[50], socValidArray[50];
     bool checkValidityOfRange;
     
     generateRandomNumbers(tempMin, tempMax, tempArray, Range);
     generateRandomNumbers(socMin, socMax, SOCArray, Range);
 
     bool isTempValueInRange, isSOCValinRange, isValInRange;
-    int noOfValidValues;
+    int noOfValidValues = 0, totalValidValues = 0;
     for(data = 0; data < Range ; data++)
     {
-        isTempValueInRange = checkTempinRange(batType, tempArray[data]);
+        isTempValueInRange = checkTempinRange(tempArray[data]);
         isSOCValinRange = checkSOCinRange(SOCArray[data]);
         isValInRange = checkValueInRange(isTempValueInRange, isSOCValinRange);
         if(isValInRange)
         {
-            printOnConsole(tempArray[data], SOCArray[data]);
-            noOfValidValues++;
+            if(noOfValidValues < 50)
+            {
+                tempValidArray[noOfValidValues] =tempArray[data];
+                socValidArray[noOfValidValues] = SOCArray[data];
+                noOfValidValues++;
+            }
+            else if (noOfValidValues == 50)
+            {
+                printOnConsole(tempValidArray, socValidArray);
+                noOfValidValues = 0;
+            }
+            
+            totalValidValues++;
         }
     }
 
-    checkValidityOfRange = randomValuesRangeCheck(noOfValidValues);
+    checkValidityOfRange = randomValuesRangeCheck(totalValidValues);
     return checkValidityOfRange;
 }
-
-bool randomValuesRangeCheck(int noOfValidValues)
-{
-    if(noOfValidValues >= 50)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
