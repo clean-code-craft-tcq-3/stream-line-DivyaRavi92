@@ -105,7 +105,7 @@ bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
     return checkValidityOfRange;
 }
 
-void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int * noOfValidValues);
+void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int * noOfValidValues)
 {
     if(*noOfValidValues < 50)
     {
