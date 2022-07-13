@@ -1,5 +1,5 @@
 #include "streamBMSData.h"
-include "stdbool.h"
+#include "stdbool.h"
 #include "stdlib.h"
 
 void printOnConsole(int temp[], int soc[])
@@ -105,12 +105,12 @@ bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
     return checkValidityOfRange;
 }
 
-void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int tempArray[data], int SOCArray[data], int * noOfValidValues);
+void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int * noOfValidValues);
 {
     if(noOfValidValues < 50)
     {
-        tempValidArray[noOfValidValues] =tempArray[data];
-        socValidArray[noOfValidValues] = SOCArray[data];
+        tempValidArray[noOfValidValues] =temp;
+        socValidArray[noOfValidValues] = SOC;
         *noOfValidValues++;
     }
     else
