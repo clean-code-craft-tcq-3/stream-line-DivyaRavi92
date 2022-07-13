@@ -8,12 +8,12 @@ void printOnConsole(int temp[], int soc[])
     printf("\nTemperature Array\n");
     for(data =0;data < 50; data ++)
     {
-        printf("%d ", temp[data]);
+        printf("%d ,", temp[data]);
     }
     printf("\nSOC Array\n");
     for(data =0; data < 50; data ++)
     {
-        printf("%d ", soc[data]);
+        printf("%d ,", soc[data]);
     }
 }
 bool checkThresholdLimit(int minVal, int maxVal, int temp)
@@ -93,9 +93,10 @@ bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
         isTempValueInRange = checkTempinRange(tempArray[data]);
         isSOCValinRange = checkSOCinRange(SOCArray[data]);
         isValInRange = checkValueInRange(isTempValueInRange, isSOCValinRange);
-        if(isValInRange)
+        if(isValInRange && noOfValidValues <=50)
         {
-            checkAndAssigntoArray(tempValidArray, socValidArray, tempArray[data], SOCArray[data], &noOfValidValues);
+            checkAndAssigntoArray(tempValidArray, socValidArray, tempArray[data], SOCArray[data], noOfValidValues);
+            noOfValidValues++;
         }    
         
         totalValidValues++;
@@ -105,18 +106,16 @@ bool processBMSStreamData(int Range, int  *tempRange, int *socRange)
     return checkValidityOfRange;
 }
 
-void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int * noOfValidValues)
+void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, int SOC, int noOfValidValues)
 {
-    if(*noOfValidValues < 50)
+    if(noOfValidValues < 50)
     {
         tempValidArray[*noOfValidValues] =temp;
         socValidArray[*noOfValidValues] = SOC;
-        *noOfValidValues++;
     }
     else
     {
         printOnConsole(tempValidArray, socValidArray);
-        *noOfValidValues = 0;   
     }
     
 }
