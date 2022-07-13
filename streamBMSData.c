@@ -110,8 +110,8 @@ void checkAndAssigntoArray(int *tempValidArray, int *socValidArray, int temp, in
 {
     if(noOfValidValues < 50)
     {
-        tempValidArray[*noOfValidValues] =temp;
-        socValidArray[*noOfValidValues] = SOC;
+        tempValidArray[noOfValidValues] =temp;
+        socValidArray[noOfValidValues] = SOC;
     }
     else
     {
