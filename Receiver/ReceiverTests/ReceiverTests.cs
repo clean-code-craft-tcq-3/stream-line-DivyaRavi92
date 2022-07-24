@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Receivers;
 namespace ReceiverTests
 {
   [TestClass]
@@ -14,7 +14,7 @@ namespace ReceiverTests
                      "SOC Array\n" +
                      "51 ,54 ,48 ,60 ,67 ,54 ,48 ,67 ,57, \n ";
 
-      string[] splitInput = Receiver.Receiver.SplitInputString(input);
+      string[] splitInput = Receiver.SplitInputString(input);
 
       Assert.AreEqual(splitInput[0], "Temperature Array");
 
@@ -30,7 +30,7 @@ namespace ReceiverTests
     {
       string csvInput = "-1, 49, 43, 1, 39, 18, 47, 46, ";
 
-      List<int> sensorReading = Receiver.Receiver.ConvertCsvToSensorReading(csvInput);
+      List<int> sensorReading = Receiver.ConvertCsvToSensorReading(csvInput);
 
       
      CollectionAssert.AreEqual(sensorReading, new List<int> {-1 ,49 ,43, 1, 39, 18, 47, 46});
@@ -41,7 +41,7 @@ namespace ReceiverTests
     {
       List<int> inputList = new List<int> { -1, 10, 13, 12, 22, 21 };
 
-      int maxValue = Receiver.Receiver.GetMaximumValue(inputList);
+      int maxValue = Receiver.GetMaximumValue(inputList);
 
       Assert.AreEqual(maxValue, 22);
     }
@@ -51,7 +51,7 @@ namespace ReceiverTests
     {
       List<int> inputList = new List<int> { -1, 10, 13, 12, 22, 21 };
 
-      int minValue = Receiver.Receiver.GetMinimumValue(inputList);
+      int minValue = Receiver.GetMinimumValue(inputList);
 
       Assert.AreEqual(minValue, -1);
     }
@@ -61,7 +61,7 @@ namespace ReceiverTests
     {
       List<int> inputList = new List<int> { 1,2,3,4,5 };
 
-      int sampleAverage = Receiver.Receiver.GetSimpleMovingAverage(inputList);
+      int sampleAverage = Receiver.GetSimpleMovingAverage(inputList);
 
       Assert.AreEqual(sampleAverage, 3);
     }
