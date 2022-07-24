@@ -6,6 +6,7 @@ namespace Receivers
 {
   public class Receiver
   {
+    [ExcludeFromCodeCoverage]
     static void Main()
     {
       string inputReading = Console.In.ReadToEnd();
