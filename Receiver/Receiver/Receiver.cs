@@ -25,14 +25,14 @@ namespace Receivers
       DisplayOnConsole(statistics);
     }
 
-    private static List<int> GetTemperatureList(string inputArray)
+    public static List<int> GetTemperatureList(string inputArray)
     {
       List<int> temperatureList = ConvertCsvToSensorReading(inputArray);
 
       return temperatureList;
     }
 
-    private static List<int> GetSocList(string inputArray)
+    public static List<int> GetSocList(string inputArray)
     {
       List<int> socList = ConvertCsvToSensorReading(inputArray);
 
