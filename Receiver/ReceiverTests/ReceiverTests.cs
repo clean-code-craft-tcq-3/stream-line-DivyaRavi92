@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Receivers;
-
 namespace ReceiverTests
 {
   [TestClass]
@@ -65,6 +64,34 @@ namespace ReceiverTests
       int sampleAverage = Receiver.GetSimpleMovingAverage(inputList);
 
       Assert.AreEqual(sampleAverage, 3);
+    }
+
+    [TestMethod("Method to test the Get Statistics method")]
+    public void GetStatisticsTestMethod()
+    {
+      List<int> temperatureList = new List<int>() { 1, 2, 3, 4, 5 };
+      List<int> socList = new List<int>() { 21, 31, 45, 68, 80 };
+
+      string statistics = Receiver.GetStatistics(temperatureList, socList);
+
+      string title = "------------------  Statistics  ------------------\n";
+      string temperatureStatistics = "Maximum Temperature: 5" + "\n" +
+                                     "Minimum Temperature: 1" + "\n" +
+                                     "SimpleMovingAverage: 3" +
+                                     "\n\n";
+
+      string stateOfChargeStatistics = "Maximum StateOfCharge: 80" +
+                                       "\n" +
+                                       "Minimum StateOfCharge: 21" +
+                                       "\n" +
+                                       "SimpleMovingAverage: 49" +
+                                       "\n";
+
+      string endOfLine = "-----------------------------------------------------";
+
+      string printLine = title + temperatureStatistics + stateOfChargeStatistics + endOfLine;
+
+      Assert.AreEqual(statistics, printLine);
     }
   }
 }
