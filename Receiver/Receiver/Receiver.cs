@@ -77,7 +77,7 @@ namespace Receivers
       return sumOfInputReadings / countOfInputValues;
     }
 
-    private static string GetStatistics(List<int> temperatureList, List<int> socList)
+    public static string GetStatistics(List<int> temperatureList, List<int> socList)
     {
       string title = "------------------  Statistics  ------------------\n";
       string temperatureStatistics = $"Maximum Temperature: {GetMaximumValue(temperatureList)}" + "\n" +
