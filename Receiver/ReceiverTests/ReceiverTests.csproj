@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Receiver\Receiver\Receiver.csproj" />
+    <ProjectReference Include="..\Receiver\Receiver.csproj" />
   </ItemGroup>
 
 </Project>
