@@ -93,5 +93,25 @@ namespace ReceiverTests
 
       Assert.AreEqual(statistics, printLine);
     }
+    
+    [TestMethod("Method to test GetTemperature method")]
+    public void GetTemperatureTestMethod()
+    {
+      string value = "1,2,3,4,5";
+
+      List<int> temperatureList = Receiver.GetTemperatureList(value);
+
+      CollectionAssert.AreEqual(temperatureList, new List<int>(){1,2,3,4,5});
+    }
+
+    [TestMethod("Method to test GetTemperature method")]
+    public void GetSocTestMethod()
+    {
+      string value = "10,20,30,40,50";
+
+      List<int> temperatureList = Receiver.GetSocList(value);
+
+      CollectionAssert.AreEqual(temperatureList, new List<int>() { 10, 20, 30, 40, 50 });
+    }
   }
 }
