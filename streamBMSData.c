@@ -18,9 +18,9 @@ void printOnConsole(int temp[], int soc[])
     
     printf("\n");
 }
-bool checkThresholdLimit(int minVal, int maxVal, int temp)
+bool checkThresholdLimit(int minVal, int maxVal, int parameter)
 {
-    if(temp >= minVal  && temp <= maxVal)
+    if(parameter >= minVal  && parameter <= maxVal)
     {
         return true;
     }
@@ -37,11 +37,9 @@ bool checkTempinRange(int temp)
 
 bool checkSOCinRange(int soc)
 {
-    if(soc >= 40  && soc <= 90)
-    {
-        return true;
-    }
-    return false;
+    bool isSocInRange;
+    isSocInRange = checkThresholdLimit(40, 90, soc);
+    return isSocInRange;
 }
 
 bool randomValuesRangeCheck(int noOfValidValues)
