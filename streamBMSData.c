@@ -67,11 +67,11 @@ bool checkValueInRange(bool isTempValueInRange, bool isSOCValinRange)
     return isValInRange;    
 }
 
-void generateRandomNumbers(int tempMin, int tempMax, int * Array, int Range )
+void generateRandomNumbers(int parameterMinVal, int parameterMaxVal, int * Array, int Range )
 {
     for(int i =0; i < Range; i++)
     {
-        Array[i] = (rand() % (tempMax - tempMin+1) + tempMin);
+        Array[i] = (rand() % (parameterMaxVal - parameterMinVal+1) + parameterMinVal);
     }
 }
 
