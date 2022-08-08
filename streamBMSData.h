@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void generateRandomNumbers(int tempMin, int tempMax, int * Array, int Range);
+void generateRandomNumbers(int parameterMinVal, int parameterMaxVal, int * Array, int Range );
 bool processBMSStreamData(int Range, int * tempRange, int *socRange);
 bool checkThresholdLimit(int minVal, int maxVal, int temp);
 void printOnConsole(int temp[], int soc[]);
