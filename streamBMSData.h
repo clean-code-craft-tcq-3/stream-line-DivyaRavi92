@@ -2,7 +2,7 @@
 
 void generateRandomNumbers(int parameterMinVal, int parameterMaxVal, int * Array, int Range );
 bool processBMSStreamData(int Range, int * tempRange, int *socRange);
-bool checkThresholdLimit(int minVal, int maxVal, int temp);
+bool checkThresholdLimit(int minVal, int maxVal, int parameter);
 void printOnConsole(int temp[], int soc[]);
 bool checkTempinRange(int temp);
 bool checkSOCinRange(int soc);
